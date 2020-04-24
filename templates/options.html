@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="col-lg-6 col-md-7 col-sm-8">
+    <div class="banner-content">
+        <h1>You are here to stalk {{ handle }}</h1>
+        <a href="/submission/{{ handle }}" target="_blank">Submission Stats</a><br>
+        <a href="/contest/{{ handle }}" target="_blank">Contest Stats</a>
+    </div>
+</div>
+{% endblock %}

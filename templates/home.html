@@ -1,15 +1,24 @@
 {% extends "base.html" %}
-{% block title %}Home Page{% endblock %}
+{% block title %} Home Page {% endblock %}
 {% load socialaccount %}
 
 {% block content %}
     <h1>Home Page</h1>
     {% if user.is_authenticated %}
     <p>Welcome {{ user.username }} !!!</p>
+    <form method="post" target="_blank">
+         {% csrf_token %}
+         {{ form }}
+        <input type="submit" class="primary-btn" value="GO"><span class="lnr lnr-arrow-right"></span>
+    </form>
     <p><a href="{% url 'account_logout' %}">Log out</a>
     {% else %}
-    <p><a href="{% url 'account_signup' %}">Sign Up</a></p>
-    <p><a href="{% url 'account_login' %}">Log In </a></p>
+
+    <p><a href="{% url 'account_login' %}">Log In</a></p>
     <p><a href="{% provider_login_url 'google' %}">Log In with Gmail</a></p>
+    <p>New to CF Crawler? <a href="{% url 'account_signup' %}">Create an Account!!</a></p>
+
     {% endif %}
 {% endblock %}
+
+
