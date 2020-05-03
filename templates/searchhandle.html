@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Search Handle
+{% endblock %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+<h3>Enter CodeForces Handle</h3>
+<div class="jumbotron " style="background-color: rgb(233, 224, 211);">
+    <form method="POST" class="form-group">
+        {% csrf_token %}
+        {{form | crispy}}
+        <button type="submit" class="btn btn-success">Search</button>
+    </form>
+
+</div>
+{% endblock %}
