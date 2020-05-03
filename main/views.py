@@ -9,15 +9,20 @@ import requests
 
 
 def home(request):
+    return render(request, 'home.html', {})
+
+def cfhandle(request):
     if request.method == 'POST':
         form = HandleForm(request.POST)
         if form.is_valid():
             handle = form.cleaned_data.get('handle')
-            return redirect('/who/' + handle)
+            return redirect('/cfhandle/' + handle)
     else:
         form = HandleForm()
 
-    return render(request, 'home.html', {'form': form})
+    return render(request, 'searchhandle.html', {'form': form})
+
+
 
 
 def who(request, handle):
