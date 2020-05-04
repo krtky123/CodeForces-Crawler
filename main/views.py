@@ -41,7 +41,7 @@ def code_forces(request):
 
         if len(secx)>0:
             if secx[1] == '':
-                secx[1] = "Not Mentioned(maybe Competitive Chodar)"
+                secx[1] = "Not Mentioned"
             dic.append(secx)
 
 
