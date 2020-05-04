@@ -22,7 +22,57 @@ def cfhandle(request):
 
     return render(request, 'searchhandle.html', {'form': form})
 
+def time_table(request):
+    
+    return render(request, 'time_table.html', {})
 
+def code_forces(request):
+    url="https://codeforces.com/contests"
+    page=requests.get(url)
+    bs=BeautifulSoup(page.content, 'html.parser')
+
+    tables=bs.find_all('table', class_="")
+    dic=[]
+
+    sec=tables[0].find_all('tr')
+    for item in sec:
+        secx=item.find_all('td')
+        secx=[x.text.strip() for x in secx]
+
+        if len(secx)>0:
+            if secx[1] == '':
+                secx[1] = "Not Mentioned(maybe Competitive Chodar)"
+            dic.append(secx)
+
+
+    return render(request, 'cf.html', {'dic':dic})
+
+def code_chef(request):
+    url="https://www.codechef.com/contests"
+    page=requests.get(url)
+    bs=BeautifulSoup(page.content, 'html.parser')
+    tables=bs.find_all('table', class_="dataTable")
+    
+    dic1=[]
+    dic2=[]
+    
+    sec=tables[0].find_all('tr')
+    for item in sec:
+        secx=item.find_all('td')
+        secx=[x.text.strip() for x in secx]
+
+        if len(secx)>0:
+            dic1.append(secx)
+
+    sec=tables[1].find_all('tr')
+    for item in sec:
+        secx=item.find_all('td')
+        secx=[x.text.strip() for x in secx]
+
+        if len(secx)>0:
+            dic2.append(secx)
+            
+    return render(request, 'cchef.html', {'dic1':dic1,'dic2':dic2})
 
 
 def who(request, handle):
