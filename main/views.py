@@ -7,6 +7,10 @@ from .forms import HandleForm
 from django.views.generic import TemplateView
 import requests
 from bs4 import BeautifulSoup
+from . import fusioncharts
+import pandas as pd
+from .models import languages, verdicts, levels
+from collections import OrderedDict
 
 def home(request):
     return render(request, 'home.html', {})
@@ -160,7 +164,12 @@ def contest(request, handle):
     context = {
         'handle': handle,
         'contests': contests,
-        'ranks': ranks
+        'ranks': ranks,
     }
 
     return render(request, "contest_stats.html", context)
+
+
+
+
+
