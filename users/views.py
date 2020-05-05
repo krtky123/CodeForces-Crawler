@@ -10,16 +10,6 @@ from django.contrib.auth.decorators import login_required
 from . import models
 
 
-from bs4 import BeautifulSoup
-import requests
-from lxml import html
-
-import pandas as pd
-import matplotlib.pyplot as plt, mpld3
-
-
-from collections import OrderedDict
-
 
 
 class SignUpView(CreateView):

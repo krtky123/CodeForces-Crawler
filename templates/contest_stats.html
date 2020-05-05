@@ -1,39 +1,69 @@
 {% extends "base.html" %}
+
+{% block title %}
+User-Profile
+{% endblock %}
+
 {% block content %}
-<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
-<div class="container" id="chart"></div>
-<script>
-    var options = {
-          series: [{
-            name: "Rank",
-            data: {{ ranks }}
-        }],
-          chart: {
-          height: 350,
-          type: 'line',
-          zoom: {
-            enabled: false
-          }
-        },
-        dataLabels: {
-          enabled: false
-        },
-        stroke: {
-          curve: 'straight'
-        },
-        xaxis: {
-          categories: {{ contests }},
-        },
-        grid: {
-          row: {
-            colors: ['#f3f3f3', 'transparent'], // takes an array which will be repeated on columns
-            opacity: 0.5
-          },
-        }
 
-        };
-        var chart = new ApexCharts(document.querySelector("#chart"), options);
-        chart.render();
+    <div id="languages_chart">
+        {{output_languages | safe}}
+    </div>
 
-</script>
+    <div id="verdicts_chart">
+        {{output_verdicts | safe}}
+    </div>
+
+    <div id="levels_chart">
+        {{output_levels | safe}}
+    </div>
+
+    <div class="w-25 p-3">
+        <table class="table table-striped">
+
+            <thead>
+                <tr class="bg-primary">
+                    <th scope="col">Contest Stats </th>
+                    <th scope="col">{{Handle}}</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr>
+                    <th scope="row">
+                        Best Rank
+                    </th>
+
+                    <td> {{Best_Rank}} </td>
+                </tr>
+
+                <tr>
+                    <th scope="row">
+                        Worst Rank
+                    </th>
+
+                    <td> {{Worst_Rank}} </td>
+                </tr>
+
+                <tr>
+                    <th scope="row">
+                        Max Up
+                    </th>
+
+                    <td> {{Max_Up}} </td>
+                </tr>
+
+                <tr>
+                    <th scope="row">
+                        Max Down
+                    </th>
+
+                    <td> {{Max_Down}} </td>
+                </tr>
+            </tbody>
+
+        </table>
+    </div>
+
+
 {% endblock %}
