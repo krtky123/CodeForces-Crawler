@@ -7,7 +7,6 @@ app_name='main'
 
 urlpatterns = [
     path('', v.home, name='home'),
-    
     path('cfhandle/', v.cfhandle, name="cfhandle"),
     path('cfhandle/<str:handle>', v.who, name='who'),
     path('timetable/', v.time_table, name="time_table"),

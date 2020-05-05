@@ -6,7 +6,7 @@ from urllib.request import urlopen
 from .forms import HandleForm
 from django.views.generic import TemplateView
 import requests
-
+from bs4 import BeautifulSoup
 
 def home(request):
     return render(request, 'home.html', {})

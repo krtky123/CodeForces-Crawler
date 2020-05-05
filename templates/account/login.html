@@ -15,7 +15,7 @@ Login
 {% get_providers as socialaccount_providers %}
 
 {% if socialaccount_providers %}
-<p>Login with google-></p>
+<p>Login with with your Gmail account</p>
 
 <div class="socialaccount_ballot">
 
@@ -23,7 +23,7 @@ Login
     {% include "socialaccount/snippets/provider_list.html" with process="login" %}
   </ul><br>
 
-  <div class="login-or">{% trans 'or Login with your CF Crawler account->' %}</div>
+  <div class="login-or">{% trans 'Login with your CF Crawler account' %}</div>
 
 </div><br>
 
