@@ -15,6 +15,9 @@ from collections import OrderedDict
 def home(request):
     return render(request, 'home.html', {})
 
+def contact(request):
+    return render(request, 'contact.html', {})
+
 def cfhandle(request):
     if request.method == 'POST':
         form = HandleForm(request.POST)
