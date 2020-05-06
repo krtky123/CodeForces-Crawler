@@ -12,10 +12,11 @@ Code Forces TT
         <ul>
             {% for info in dic %}
                 <br>
-                <li><h4>Name: {{info.0}}</h4></li>
+                <li><h4>Name:<a href="https://codeforces.com/contests"> {{info.0}}</a></h4></li>
                 <h4>Creator: {{info.1}}</h4>
                 <h4>Start Date and Time: {{info.2}}</h4>
                 <h4>Duration: {{info.3}}</h4>
+                <h4>Remaining Time/Days: {{info.4}}</h4>
                 <br>
             {% endfor %}
             
