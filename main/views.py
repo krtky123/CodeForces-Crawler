@@ -83,11 +83,26 @@ def code_chef(request):
             
     return render(request, 'cchef.html', {'dic1':dic1,'dic2':dic2})
 
-
 def who(request, handle):
     context = {
         'handle': handle,
     }
+    start_url = "https://www.codeforces.com/"
+    print(handle)
+    cf_handle = handle
+    contests_url = start_url + 'profile/' + cf_handle
+    print(contests_url)
+    page = requests.get(contests_url)
+    soup = BeautifulSoup(page.content, 'lxml')
+
+    title = soup.find('title').text
+    print(title)
+    if title == 'Codeforces':
+        form = HandleForm()
+        return render(request, 'searchhandle.html', {'form': form, 'error': 'invalid handle case sensitive'})
+
+
+
     return render(request, 'options.html', context)
 
 
@@ -432,3 +447,51 @@ def display_stats_levels(handle):
 
     return graph2D
 
+def iitg(request):
+    url1 = "https://codeforces.com/ratings/organization/297"
+    page1 = requests.get(url1)
+    soup1 = BeautifulSoup(page1.content, 'lxml')
+    div1 = soup1.find_all('div', class_='pagination')
+
+    if len(div1) == 1:
+        t = 1
+    else:
+        ul = div1[1].find('ul')
+        li = ul.find_all('li')
+
+        t = int(li[-2].text)
+
+    dic = []
+    for i in range(t + 1):
+        url = "https://codeforces.com/ratings/organization/297/page/" + str(i+1)
+        # print(url)
+        page = requests.get(url)
+        bs = BeautifulSoup(page.content, 'lxml')
+        div = bs.find_all('div',class_='datatable ratingsDatatable')
+        # print(div)
+        tables = div[0].find_all('table')
+
+        sec=tables[0].find_all('tr')
+        for item in sec:
+            secx = item.find_all('td')
+
+            if len(secx) == 0:
+                continue
+            list = []
+            stri = secx[0].text.strip()
+            r = 0
+            for e in stri:
+                if e =='(':
+                    break
+                if e>='0' and e<='9':
+                    r = r*10 + int(e)
+            if r==0:
+                continue
+            list.append(r)
+            list.append(secx[1].text.strip())
+            list.append(sec[1].find_all('a')[0]['class'][1])
+            list.append(secx[2].text.strip())
+            list.append(secx[3].text.strip())
+            dic.append(list)
+    print(dic)
+    return render(request, 'iitg.html', {'dic':dic})

@@ -15,4 +15,5 @@ urlpatterns = [
     path('timetable/codechef', v.code_chef, name="code_chef"),
     path('contest/<str:handle>', v.contest, name='contest-statistics'),
     path('contact/', v.contact, name='contact'),
+    path('iitg/', v.iitg, name='iitg'),
 ]
