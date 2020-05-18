@@ -261,6 +261,7 @@ def search_handle(request):
 def get_submission_stats(handle):
     languages.objects.all().delete()
     verdicts.objects.all().delete()
+    levels.objects.all().delete()
 
     page = requests.get("https://codeforces.com/submissions/" + handle)
 
@@ -419,7 +420,6 @@ def display_stats_levels(handle):
         else:
             R += l.val
 
-    # print('{} {} {} {} {} {}'.format(A, B, C, D, E, R))
     datasource["data"].append({"label": "A", "value": A})
     datasource["data"].append({"label": "B", "value": B})
     datasource["data"].append({"label": "C", "value": C})
