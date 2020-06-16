@@ -16,4 +16,6 @@ urlpatterns = [
     path('contest/<str:handle>', v.contest, name='contest-statistics'),
     path('contact/', v.contact, name='contact'),
     path('iitg/', v.iitg, name='iitg'),
+    path('allchat/', v.allchat, name='allchat'),
+    path('chatroom/<str:userid1>/<str:userid2>/', v.chatroom, name='chatroom'),
 ]

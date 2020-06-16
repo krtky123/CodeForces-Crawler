@@ -31,6 +31,8 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+
+    'channels',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -76,7 +78,7 @@ TEMPLATES = [
         },
     },
 ]
-
+ASGI_APPLICATION = "CF_Crawler.routing.application"
 WSGI_APPLICATION = 'CF_Crawler.wsgi.application'
 
 
@@ -144,3 +146,14 @@ ACCOUNT_USERNAME_REQUIRED = True
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
 ]
+
+# docker part
+
+# CHANNEL_LAYERS = {
+#     'default': {
+#         'BACKEND': 'channels_redis.core.RedisChannelLayer',
+#         'CONFIG': {
+#             "hosts": [('127.0.0.1', 6379)],
+#         },
+#     },
+# }
