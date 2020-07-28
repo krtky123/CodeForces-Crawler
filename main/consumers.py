@@ -10,8 +10,6 @@ import datetime
 class ChatConsumer(AsyncConsumer):
 
     async def websocket_connect(self,event):
-        print("falak connect", event)
-
         user1 = self.scope['url_route']['kwargs']['user1']
         user2 = self.scope['url_route']['kwargs']['user2']
 
